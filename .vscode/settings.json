@@ -1,0 +1,4 @@
+{
+  "python.pythonPath": "~/.pyenv/versions/3.9.2/envs/crawler/bin/python",
+  "python.linting.enabled": true,
+}
