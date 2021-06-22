@@ -20,7 +20,7 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=["tests"]),
     classifiers=(
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.3",
         "License :: OSI Approved :: MIT License",
     ),
     setup_requires=['wheel'],
