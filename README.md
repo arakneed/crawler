@@ -18,10 +18,10 @@ Any vertex spotted by the spider will be scheduled as a **task**. The only thing
 
 ```python
 import asyncio
-import aiohttp
 from pathlib import Path
 import re
 
+import aiohttp
 from arakneed import Crawler, Task
 
 
@@ -47,7 +47,7 @@ async def resolver(task: Task, response: aiohttp.ClientResponse):
 asyncio.run(Crawler().run(Task('page', 'https://github.com'), resolver))
 ```
 
-This code downloads all images it founds on Github. I believe it explains what does the framework use like.
+This code downloads all images it founds on Github. I believe it explains what does the business code look like.
 
 ## Examples
 
