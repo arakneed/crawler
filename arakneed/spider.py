@@ -1,15 +1,12 @@
-from .shared import Config
+from .shared import Component
 from .exceptions import CrawlerError
 from .visitor import Visitor
-from .logger import Logger
 from .scheduler import Scheduler
 
 
-class Spider:
+class Spider(Component):
 
-    def __init__(self, config: Config, scheduler: Scheduler, visitor: Visitor, logger: Logger):
-        self.config = config
-        self.logger = logger
+    def install(self, *, scheduler: Scheduler, visitor: Visitor):
         self.scheduler = scheduler
         self.visitor = visitor
 

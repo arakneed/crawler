@@ -1,5 +1,5 @@
 
-__version__ = '0.1.0'
+__version__ = '0.1.3'
 
 from .crawler import Crawler  # noqa
 from .cacher import Cacher  # noqa

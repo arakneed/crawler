@@ -28,7 +28,8 @@ class Crawler:
 
         aio_tasks = []
         for _ in range(self.config.spider):
-            spider = self.Spider(self.config, self.scheduler, self.visitor, self.logger)
+            spider = self.Spider(self.config, cacher=self.cacher, logger=self.logger)
+            spider.install(scheduler=self.scheduler, visitor=self.visitor)
             aio_tasks.append(asyncio.create_task(spider.run(resolver)))
 
         await self.scheduler.all_done()

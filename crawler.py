@@ -1,8 +1,8 @@
 import asyncio
-import aiohttp
 from pathlib import Path
 import re
 
+import aiohttp
 from arakneed import Crawler, Task, ResponseTimeoutError
 
 
