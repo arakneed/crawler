@@ -1,5 +1,5 @@
 
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 
 from .shared import Task, Config  # noqa
 from .cacher import Cacher  # noqa
