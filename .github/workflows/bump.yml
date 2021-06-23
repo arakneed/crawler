@@ -1,0 +1,37 @@
+name: Bump Package Version
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - id: version
+        uses: paulhatch/semantic-version@v4
+        with:
+          tag_prefix: "v"
+          major_pattern: "/breaking change|BREAKING CHANGE/"
+          minor_pattern: "/feat/"
+          format: "${major}.${minor}.${patch}"
+          change_path: "arakneed"
+          short_tags: true
+          bump_each_commit: false
+      - if: steps.version.outputs.changed == 'true'
+        run: |
+          sed -i -E "s/__version__ =.*$/__version__ = '${{ steps.version.outputs.version }}'/" arakneed/__init__.py
+          sed -i -E "s/version =.*$/version = \"${{ steps.version.outputs.version }}\"/" pyproject.toml
+      - uses: EndBug/add-and-commit@v7
+        if: steps.version.outputs.changed == 'true'
+        with:
+          message: "chore(pkg): bump ${{ steps.version.outputs.version_tag }}"
+          default_author: github_actions
+      - uses: ncipollo/release-action@v1
+        if: steps.version.outputs.changed == 'true'
+        with:
+          tag: ${{ steps.version.outputs.version_tag }}
+          token: ${{ secrets.RELEASE_TOKEN }}

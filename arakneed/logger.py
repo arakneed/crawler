@@ -15,7 +15,7 @@ class HostnameFilter(logging.Filter):
 
 
 class Logger:
-    """ TODO: @sy local logger config """
+
     def __init__(self, config: Config):
         logger = logging.getLogger(__name__)
         logger.setLevel(logging.DEBUG)
@@ -50,19 +50,25 @@ class Logger:
         return decorator
 
     @__proxy('debug')
-    def debug(self): pass
+    def debug(self):
+        pass
 
     @__proxy('info')
-    def info(self): pass
+    def info(self):
+        pass
 
     @__proxy('warn')
-    def warn(self): pass
+    def warn(self):
+        pass
 
     @__proxy('warning')
-    def warning(self): pass
+    def warning(self):
+        pass
 
     @__proxy('error')
-    def error(self): pass
+    def error(self):
+        pass
 
     @__proxy('fatal')
-    def fatal(self): pass
+    def fatal(self):
+        pass

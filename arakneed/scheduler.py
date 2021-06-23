@@ -12,7 +12,7 @@ def safe_iter(items):
 
 class Scheduler(Component):
 
-    async def run(self, tasks: list[Task]):
+    async def run(self, tasks):
         self.queue = asyncio.LifoQueue()
         await self.eat(tasks)
 
