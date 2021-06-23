@@ -15,7 +15,7 @@ class HostnameFilter(logging.Filter):
 
 
 class Logger:
-    """ TODO: @sy local logger config """
+
     def __init__(self, config: Config):
         logger = logging.getLogger(__name__)
         logger.setLevel(logging.DEBUG)

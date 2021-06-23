@@ -5,7 +5,7 @@ description = "A common use targeted concurrent crawler for any directed graph. 
 authors = ["arakneed <arakneed@somarl.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.8"
 aiohttp = "^3.7.4"
 
 [tool.poetry.dev-dependencies]
