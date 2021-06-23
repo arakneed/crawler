@@ -1,0 +1,22 @@
+name: Bump Package Version
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: paulhatch/semantic-version@v4.0.2
+        with:
+          tag_prefix: "v"
+          major_pattern: "/breaking change|BREAKING CHANGE/"
+          minor_pattern: "/feat/"
+          format: "${major}.${minor}.${patch}"
+          change_path: "arakneed"
+          short_tags: true
+          bump_each_commit: false
