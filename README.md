@@ -32,7 +32,7 @@ async def resolver(task: Task, response: aiohttp.ClientResponse):
 
         return [
             Task('image', group[1])
-            for group in re.compile(r'<img.+?src=\"(.+?)\".+?>').finditer(r)
+            for group in re.compile(r'<img.+?src=\"(.+?)\".*?>').finditer(r)
             if group[1].endswith('.jpg') or group[1].endswith('.png') or group[1].endswith('.svg')
         ]
 
