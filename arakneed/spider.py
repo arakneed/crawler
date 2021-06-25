@@ -13,6 +13,7 @@ class Spider(Component):
     async def run(self, resolver):
         while True:
             try:
+                task = None
                 task = await self.scheduler.digest()
                 self.logger.info('Resolving', task)
                 async with self.visitor.visit(task) as result:
@@ -25,7 +26,7 @@ class Spider(Component):
                 self.logger.error('Failure', repr(e.raw_error), task)
                 await self.scheduler.task_failed(task)
             except Exception as e:
-                self.logger.error('Exception', e)
+                self.logger.error('Exception', e, task)
                 if not self.config.tolerant:
                     raise
             finally:
