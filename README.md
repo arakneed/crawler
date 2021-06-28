@@ -12,7 +12,21 @@ Arakneed can be used to traverse any directed graph, including a directory on yo
 
 Though it can also be used to crawl a website like a tranditional spider.
 
-## How to use?
+## Usage
+
+Install as dependency:
+
+```sh
+pip install -U arakneed
+```
+
+Or you can clone the repo and work right in place within file `crawler.py`:
+
+```sh
+git clone https://github.com/arakneed/crawler.git
+```
+
+## How does it work?
 
 Any vertex spotted by the spider will be scheduled as a **task**. The only thing you need to do is to define how to handle the tasks.
 
@@ -59,3 +73,19 @@ This code downloads all images it founds on Github. I believe it explains what d
 
 - Be careful with circles in the directed graph if you are customizing the scheduler/spider. The framework always checks whether all corresponding vertices are resolved recursively of every vertex to know when could it have a relax :)
 - This paradigm is not distributed. Though you can take a glance of it through Redis based vertices resolving check, but the task is locked as soon as it's resolved, you cannot resolve a task on several machines simultaneously.
+
+## Development
+
+A branch called `dev` is recommended for common development.
+
+Useful commands:
+
+- install poetry  
+  `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python`  
+  `source $HOME/.poetry/env`
+- install dependencies  
+  `poetry install`
+- run tests  
+  `poetry run pytest`
+- lint  
+  `poetry run flake8 --max-line-length=120 --statistics`

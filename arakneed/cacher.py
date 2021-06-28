@@ -103,14 +103,19 @@ class Cacher(CacherBase):
         return self.mem_connector
 
     def try_redis(self):
-        if self.config.redis_server and aioredis_installed:
-            try:
-                redis = aioredis.from_url(self.config.redis_server, decode_responses=True)
-                loop = asyncio.get_event_loop()
-                connection = loop.run_until_complete(redis.connection_pool.get_connection("_"))
-                loop.run_until_complete(connection.connect())
-                loop.run_until_complete(connection.disconnect())
-                self.redis_enabled = True
-            except Exception:
-                self.logger.error('Exception', 'invalid redis server', str(self.config.redis_server))
-                raise
+        async def try_connect():
+            redis = aioredis.from_url(self.config.redis_server, decode_responses=True)
+            connection = await redis.connection_pool.get_connection("_")
+            await connection.connect()
+            await connection.disconnect()
+
+        if self.config.redis_server:
+            if aioredis_installed:
+                try:
+                    asyncio.get_event_loop().run_until_complete(try_connect())
+                    self.redis_enabled = True
+                except Exception:
+                    self.logger.error('Exception', 'invalid redis server', str(self.config.redis_server))
+                    raise
+            else:
+                self.logger.error('Exception', 'aioredis is not installed')

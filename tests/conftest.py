@@ -17,8 +17,8 @@ def config():
 
 
 @pytest.fixture
-def cacher(config):
-    return Cacher(config)
+def cacher(config, logger):
+    return Cacher(config, logger=logger)
 
 
 @pytest.fixture
