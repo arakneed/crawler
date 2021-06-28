@@ -11,6 +11,7 @@ class Config:
     tolerant: bool = False
     exclusive: bool = True
     user_agent: str = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36'  # noqa
+    redis_server: str = ''  # redis://127.0.0.1:6379
 
     @property
     def headers(self):
