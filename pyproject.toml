@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "arakneed"
-version = "0.1.4"
+version = "0.2.0"
 description = "A common use targeted concurrent crawler for any directed graph. It's designed to be easy to use."
 authors = ["arakneed <arakneed@somarl.com>"]
 
